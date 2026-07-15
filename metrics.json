@@ -15,11 +15,53 @@
       "rsb": 0
     },
     {
+      "unicode": "U+0041",
+      "name": "A",
+      "advanceWidth": 636,
+      "lsb": 18,
+      "rsb": 18
+    },
+    {
+      "unicode": "U+0042",
+      "name": "B",
+      "advanceWidth": 622,
+      "lsb": 88,
+      "rsb": 64
+    },
+    {
+      "unicode": "U+0043",
+      "name": "C",
+      "advanceWidth": 740,
+      "lsb": 60,
+      "rsb": 60
+    },
+    {
+      "unicode": "U+0044",
+      "name": "D",
+      "advanceWidth": 744,
+      "lsb": 88,
+      "rsb": 60
+    },
+    {
       "unicode": "U+0045",
       "name": "E",
       "advanceWidth": 630,
       "lsb": 88,
       "rsb": 64
+    },
+    {
+      "unicode": "U+0046",
+      "name": "F",
+      "advanceWidth": 620,
+      "lsb": 88,
+      "rsb": 66
+    },
+    {
+      "unicode": "U+0047",
+      "name": "G",
+      "advanceWidth": 740,
+      "lsb": 60,
+      "rsb": 60
     },
     {
       "unicode": "U+0048",
@@ -29,9 +71,128 @@
       "rsb": 88
     },
     {
+      "unicode": "U+0049",
+      "name": "I",
+      "advanceWidth": 268,
+      "lsb": 88,
+      "rsb": 88
+    },
+    {
+      "unicode": "U+004A",
+      "name": "J",
+      "advanceWidth": 564,
+      "lsb": 56,
+      "rsb": 88
+    },
+    {
+      "unicode": "U+004B",
+      "name": "K",
+      "advanceWidth": 604,
+      "lsb": 88,
+      "rsb": 34
+    },
+    {
+      "unicode": "U+004C",
+      "name": "L",
+      "advanceWidth": 604,
+      "lsb": 88,
+      "rsb": 56
+    },
+    {
+      "unicode": "U+004D",
+      "name": "M",
+      "advanceWidth": 860,
+      "lsb": 80,
+      "rsb": 80
+    },
+    {
+      "unicode": "U+004E",
+      "name": "N",
+      "advanceWidth": 760,
+      "lsb": 88,
+      "rsb": 88
+    },
+    {
       "unicode": "U+004F",
       "name": "O",
       "advanceWidth": 740,
+      "lsb": 60,
+      "rsb": 60
+    },
+    {
+      "unicode": "U+0050",
+      "name": "P",
+      "advanceWidth": 606,
+      "lsb": 88,
+      "rsb": 58
+    },
+    {
+      "unicode": "U+0051",
+      "name": "Q",
+      "advanceWidth": 760,
+      "lsb": 60,
+      "rsb": -15
+    },
+    {
+      "unicode": "U+0052",
+      "name": "R",
+      "advanceWidth": 608,
+      "lsb": 88,
+      "rsb": 30
+    },
+    {
+      "unicode": "U+0053",
+      "name": "S",
+      "advanceWidth": 594,
+      "lsb": 62,
+      "rsb": 62
+    },
+    {
+      "unicode": "U+0054",
+      "name": "T",
+      "advanceWidth": 640,
+      "lsb": 40,
+      "rsb": 40
+    },
+    {
+      "unicode": "U+0055",
+      "name": "U",
+      "advanceWidth": 760,
+      "lsb": 88,
+      "rsb": 88
+    },
+    {
+      "unicode": "U+0056",
+      "name": "V",
+      "advanceWidth": 636,
+      "lsb": 18,
+      "rsb": 18
+    },
+    {
+      "unicode": "U+0057",
+      "name": "W",
+      "advanceWidth": 842,
+      "lsb": 16,
+      "rsb": 16
+    },
+    {
+      "unicode": "U+0058",
+      "name": "X",
+      "advanceWidth": 600,
+      "lsb": 20,
+      "rsb": 20
+    },
+    {
+      "unicode": "U+0059",
+      "name": "Y",
+      "advanceWidth": 600,
+      "lsb": 20,
+      "rsb": 20
+    },
+    {
+      "unicode": "U+005A",
+      "name": "Z",
+      "advanceWidth": 606,
       "lsb": 60,
       "rsb": 60
     },

@@ -177,3 +177,251 @@ def stage1():
 # Space: metrics-only entry (no ink, no SVG file)
 SPACE = {"unicode": "U+0020", "name": "space", "advanceWidth": 260,
          "lsb": 0, "rsb": 0}
+
+
+# ---------------------------------------------------------- stage 2: caps
+# Rounds C G Q D S · squares I L F T · diagonals A V W X Y ·
+# combos B P R M N K U J Z. All coordinates hand-derived on the grid;
+# diagonals carry flat-cut apexes/vertexes (signature move 2).
+
+def glyph_C():
+    # O opened right: mouth y 230..470, flat horizontal terminals
+    v = [
+        (620, 470), (620, CAP + OVER, 210), (0, CAP + OVER, 210),
+        (0, -OVER, 210), (620, -OVER, 210), (620, 230),
+        (520, 230), (520, 68, 128, K_IN), (100, 68, 128, K_IN),
+        (100, 632, 128, K_IN), (520, 632, 128, K_IN), (520, 470),
+    ]
+    return Glyph("C", "U+0043", 740, 60, [(v, True, K_OUT)])
+
+
+def glyph_G():
+    # C + crossbar jutting into the counter, solid jaw below
+    v = [
+        (620, 470), (620, CAP + OVER, 210), (0, CAP + OVER, 210),
+        (0, -OVER, 210), (620, -OVER, 210), (620, 394),
+        (356, 394), (356, 310), (520, 310),
+        (520, 68, 128, K_IN), (100, 68, 128, K_IN),
+        (100, 632, 128, K_IN), (520, 632, 128, K_IN), (520, 470),
+    ]
+    return Glyph("G", "U+0047", 740, 60, [(v, True, K_OUT)])
+
+
+def glyph_Q():
+    # O with the bottom-right corner sheared out 95u along 45 degrees
+    outer = [
+        (0, -OVER, 210), (520, -OVER), (615, -107), (715, -7),
+        (620, 88), (620, CAP + OVER, 210), (0, CAP + OVER, 210),
+    ]
+    inner = _rect_ring(100, 68, 520, 632, 128, K_IN)
+    return Glyph("Q", "U+0051", 760, 60,
+                 [(outer, True, K_OUT), (inner, False, K_IN)],
+                 "corner-shear tail, end face parallel to the shear")
+
+
+def glyph_D():
+    outer = [(0, 0), (596, 0, 200), (596, CAP, 200), (0, CAP)]
+    inner = [(STEM, HORIZ), (496, HORIZ, 110, K_IN),
+             (496, CAP - HORIZ, 110, K_IN), (STEM, CAP - HORIZ)]
+    return Glyph("D", "U+0044", 744, 88,
+                 [(outer, True, K_OUT), (inner, False, K_IN)],
+                 "flat-top round: aligns to cap like n aligns to x-height")
+
+
+def glyph_S():
+    # double hook; upper story inset 14 left + terminal pulled 18 in
+    v = [
+        (0, 0), (330, 0), (470, 0, 140), (470, 408, 90),
+        (110, 408, 40), (110, 616, 40), (452, 616), (452, 700),
+        (14, 700, 140), (14, 324, 90), (374, 324, 40),
+        (374, 84, 40), (0, 84),
+    ]
+    return Glyph("S", "U+0053", 594, 62, [(v, True, K_OUT)],
+                 "lower story wider; flat vertical terminals")
+
+
+def glyph_I():
+    v = [(0, 0), (STEM, 0), (STEM, CAP), (0, CAP)]
+    return Glyph("I", "U+0049", 268, 88, [(v, True, K_OUT)])
+
+
+def glyph_L():
+    v = [(0, 0), (420, 0), (460, CUT), (460, HORIZ),
+         (STEM, HORIZ), (STEM, CAP), (0, CAP)]
+    return Glyph("L", "U+004C", 604, 88, [(v, True, K_OUT)])
+
+
+def glyph_F():
+    v = [
+        (0, 0), (STEM, 0), (STEM, BAR_LO), (440, BAR_LO),
+        (440, BAR_HI - CUT), (440 - CUT, BAR_HI), (STEM, BAR_HI),
+        (STEM, CAP - HORIZ), (466, CAP - HORIZ),
+        (466, CAP - CUT), (466 - CUT, CAP), (0, CAP),
+    ]
+    return Glyph("F", "U+0046", 620, 88, [(v, True, K_OUT)])
+
+
+def glyph_T():
+    v = [
+        (234, 0), (326, 0), (326, CAP - HORIZ), (560, CAP - HORIZ),
+        (560, CAP - CUT), (560 - CUT, CAP), (CUT, CAP), (0, CAP - CUT),
+        (0, CAP - HORIZ), (234, CAP - HORIZ),
+    ]
+    return Glyph("T", "U+0054", 640, 40, [(v, True, K_OUT)],
+                 "both bar terminals cut at 45 degrees")
+
+
+def glyph_A():
+    # flat-cut apex 130 wide, overshoots to 712; bar low
+    outer = [
+        (0, 0), (100, 0), (152, 158), (448, 158), (500, 0),
+        (600, 0), (365, CAP + OVER), (235, CAP + OVER),
+    ]
+    counter = [(180, 242), (420, 242), (320, 545), (280, 545)]
+    return Glyph("A", "U+0041", 636, 18,
+                 [(outer, True, K_OUT), (counter, False, K_IN)],
+                 "apex flat-cut + 12u overshoot; counter apex also flat")
+
+
+def glyph_V():
+    v = [
+        (0, CAP), (235, -OVER), (365, -OVER), (600, CAP),
+        (500, CAP), (320, 155), (280, 155), (100, CAP),
+    ]
+    return Glyph("V", "U+0056", 636, 18, [(v, True, K_OUT)],
+                 "vertex flat-cut + 12u overshoot")
+
+
+def glyph_W():
+    # all six apex/vertex events flat-cut; center peak overshoots
+    v = [
+        (0, CAP), (162, -OVER), (242, -OVER), (381, 494), (429, 494),
+        (568, -OVER), (648, -OVER), (810, CAP), (714, CAP),
+        (614, 259), (566, 259), (441, CAP + OVER), (369, CAP + OVER),
+        (244, 259), (196, 259), (96, CAP),
+    ]
+    return Glyph("W", "U+0057", 842, 16, [(v, True, K_OUT)])
+
+
+def glyph_X():
+    v = [
+        (0, 0), (104, 0), (280, 270), (456, 0), (560, 0),
+        (332, 350), (560, CAP), (456, CAP), (280, 430),
+        (104, CAP), (0, CAP), (228, 350),
+    ]
+    return Glyph("X", "U+0058", 600, 20, [(v, True, K_OUT)])
+
+
+def glyph_Y():
+    v = [
+        (234, 0), (326, 0), (326, 274), (560, CAP), (456, CAP),
+        (280, 380), (104, CAP), (0, CAP), (234, 274),
+    ]
+    return Glyph("Y", "U+0059", 600, 20, [(v, True, K_OUT)])
+
+
+def glyph_B():
+    # two bowls, lower 30u wider; waist notch bitten into the right face
+    outer = [
+        (0, 0), (470, 0, 125), (470, 324), (440, 324),
+        (440, 345), (418, 345), (418, 385), (440, 385),
+        (440, CAP, 115), (0, CAP),
+    ]
+    up = [(STEM, BAR_HI), (340, BAR_HI, 58, K_IN),
+          (340, CAP - HORIZ, 58, K_IN), (STEM, CAP - HORIZ)]
+    lo = [(STEM, HORIZ), (370, HORIZ, 64, K_IN),
+          (370, BAR_LO, 64, K_IN), (STEM, BAR_LO)]
+    return Glyph("B", "U+0042", 622, 88,
+                 [(outer, True, K_OUT), (up, False, K_IN), (lo, False, K_IN)],
+                 "waist notch on the silhouette between the bowls")
+
+
+def glyph_P():
+    outer = [(0, 0), (STEM, 0), (STEM, 280), (460, 280, 110),
+             (460, CAP, 115), (0, CAP)]
+    inner = [(STEM, 364), (360, 364, 52, K_IN),
+             (360, CAP - HORIZ, 52, K_IN), (STEM, CAP - HORIZ)]
+    return Glyph("P", "U+0050", 606, 88,
+                 [(outer, True, K_OUT), (inner, False, K_IN)])
+
+
+def glyph_R():
+    # bowl + straight leg; waist notch cut up into the bowl underside
+    outer = [
+        (0, 0), (STEM, 0), (STEM, BAR_LO), (280, BAR_LO),
+        (398, 0), (490, 0), (372, BAR_LO), (410, BAR_LO),
+        (410, BAR_LO + NOTCH_D), (450, BAR_LO + NOTCH_D),
+        (450, CAP, 115), (0, CAP),
+    ]
+    inner = [(STEM, BAR_HI), (350, BAR_HI, 55, K_IN),
+             (350, CAP - HORIZ, 55, K_IN), (STEM, CAP - HORIZ)]
+    return Glyph("R", "U+0052", 608, 88,
+                 [(outer, True, K_OUT), (inner, False, K_IN)],
+                 "leg foot lands wider than the bowl: lower story wider")
+
+
+def glyph_M():
+    # center vertex flat [308,392] at -12; top notch flat-cut at y=145
+    v = [
+        (0, 0), (STEM, 0), (STEM, 501), (308, -OVER), (392, -OVER),
+        (608, 501), (608, 0), (700, 0), (700, CAP), (608, CAP),
+        (374, 145), (326, 145), (STEM, CAP), (0, CAP),
+    ]
+    return Glyph("M", "U+004D", 860, 80, [(v, True, K_OUT)])
+
+
+def glyph_N():
+    # diagonal springs stem-inner y520; both crotch needles flat-cut
+    v = [
+        (0, 0), (STEM, 0), (STEM, 483), (116, 483), (432, 0),
+        (584, 0), (584, CAP), (492, CAP), (492, 131), (464, 131),
+        (STEM, CAP), (0, CAP),
+    ]
+    return Glyph("N", "U+004E", 760, 88, [(v, True, K_OUT)])
+
+
+def glyph_K():
+    # both limbs at exactly 45 degrees; rectangular slot at the waist
+    v = [
+        (0, 0), (STEM, 0), (STEM, 260), (352, 0), (482, 0),
+        (136, 346), (114, 346), (114, 386), (136, 386),
+        (450, CAP), (320, CAP), (STEM, 472), (STEM, CAP), (0, CAP),
+    ]
+    return Glyph("K", "U+004B", 604, 88, [(v, True, K_OUT)],
+                 "45-degree limbs echo the terminal-cut angle; waist slot")
+
+
+def glyph_U():
+    v = [
+        (0, CAP), (0, 0, 170), (584, 0, 170), (584, CAP),
+        (492, CAP), (492, 84, 85, K_IN), (STEM, 84, 85, K_IN),
+        (STEM, CAP),
+    ]
+    return Glyph("U", "U+0055", 760, 88, [(v, True, K_OUT)],
+                 "flat-bottom arch, no overshoot (n rule inverted)")
+
+
+def glyph_J():
+    v = [
+        (0, 0), (420, 0, 140), (420, CAP), (328, CAP),
+        (328, 84, 56, K_IN), (0, 84),
+    ]
+    return Glyph("J", "U+004A", 564, 56, [(v, True, K_OUT)])
+
+
+def glyph_Z():
+    v = [
+        (0, 0), (486, 0), (486, 84), (160, 84), (470, 616),
+        (470, CAP), (10, CAP), (10, 616), (318, 616), (8, 84), (0, 84),
+    ]
+    return Glyph("Z", "U+005A", 606, 60, [(v, True, K_OUT)],
+                 "bottom bar 486 vs top 460: lower story wider")
+
+
+def stage2():
+    caps = [glyph_A(), glyph_B(), glyph_C(), glyph_D(), glyph_F(),
+            glyph_G(), glyph_I(), glyph_J(), glyph_K(), glyph_L(),
+            glyph_M(), glyph_N(), glyph_P(), glyph_Q(), glyph_R(),
+            glyph_S(), glyph_T(), glyph_U(), glyph_V(), glyph_W(),
+            glyph_X(), glyph_Y(), glyph_Z()]
+    return stage1() + caps
