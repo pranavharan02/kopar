@@ -20,7 +20,7 @@ sys.path.insert(0, HERE)
 from geometry import glyph_svg_d, ink_bbox, BASELINE_SVG  # noqa: E402
 import glyphs as G  # noqa: E402
 
-STAGE = 2
+STAGE = 3
 INK = "#E8F0FF"
 BG = "#0A0E14"
 GUIDE = "#00F0FF"
@@ -160,7 +160,7 @@ def load_woff2_b64():
 
 PAGE = """<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KOPAR — Stage 2 · Uppercase</title>
+<title>KOPAR — Stage 3 · Lowercase</title>
 <style>
   :root { color-scheme: dark; }
   html, body { background: %BG%; }
@@ -212,23 +212,23 @@ PAGE = """<meta charset="utf-8">
 </style>
 <div class="wrap">
   <header>
-    <span class="eyebrow">KOPAR · geometric display · stage 2 of 6</span>
-    <h1>Uppercase complete — 26 capitals</h1>
-    <p class="sub">All caps derived from the stage-1 controls, by group.
-    New signature moves land here: flat-cut apexes with 12u overshoot
-    (A V W M N), waist notches on B R, the 45° slot on K, and Q's
-    sheared-corner tail. Guides: baseline, x-height, cap, dashed = overshoot.</p>
+    <span class="eyebrow">KOPAR · geometric display · stage 3 of 6</span>
+    <h1>Lowercase complete — a to z</h1>
+    <p class="sub">22 new glyphs derived from the n / o controls. Circuit
+    notches at every spec'd bowl-stem weld (b d p q m h u), 45° terminal
+    cuts on t r f s, flat-cut vertexes on v w x y, square dots on i j,
+    single-story g. Guides: baseline, x-height, cap, dashed = overshoot.</p>
   </header>
 
   <section>
-    <span class="eyebrow">Caps by derivation group</span>
-    <div class="grouplabel">Rounds — C G Q D S (from O)</div>
+    <span class="eyebrow">Lowercase by derivation group</span>
+    <div class="grouplabel">From n — m h u r</div>
     <div class="panel hero">%HERO_R%</div>
-    <div class="grouplabel">Squares — I L F T (from H E)</div>
+    <div class="grouplabel">From o — b d p q c e</div>
     <div class="panel hero">%HERO_S%</div>
-    <div class="grouplabel">Diagonals — A V W X Y</div>
+    <div class="grouplabel">Verticals &amp; cuts — i j l t f k</div>
     <div class="panel hero">%HERO_D%</div>
-    <div class="grouplabel">Combos — B P R M N K U J Z</div>
+    <div class="grouplabel">Diagonals &amp; spine — v w x y z s g</div>
     <div class="panel hero">%HERO_C%</div>
   </section>
 
@@ -246,13 +246,13 @@ PAGE = """<meta charset="utf-8">
     <span class="eyebrow">Signature moves, stage 2</span>
     <div class="details">
       <div class="panel detail">%DET1%
-        <div class="cap"><b>Flat-cut apex</b> — A, 130u face, +12 overshoot</div></div>
+        <div class="cap"><b>Weld notch</b> — b, 40×22u step at the upper weld</div></div>
       <div class="panel detail">%DET2%
-        <div class="cap"><b>Waist notch</b> — B, 40×22u bite between bowls</div></div>
+        <div class="cap"><b>Terminal cuts</b> — s, 45° on both ends</div></div>
       <div class="panel detail">%DET3%
-        <div class="cap"><b>Waist slot</b> — K, 45° limbs, 22u-deep slot</div></div>
+        <div class="cap"><b>Double notch</b> — m, both shoulder welds</div></div>
       <div class="panel detail">%DET4%
-        <div class="cap"><b>Corner shear</b> — Q, tail extruded 95u at 45°</div></div>
+        <div class="cap"><b>Squared hook</b> — g, single-story descender</div></div>
     </div>
   </section>
 
@@ -271,10 +271,9 @@ PAGE = """<meta charset="utf-8">
     method). Q's negative rsb is the tail crossing its advance — intended.</p>
   </section>
 
-  <div class="foot">KOPAR working specimen · stage 2 rendered from the same
-  SVG + metrics data that build.py compiles · next: stage 3, lowercase
-  (from n: m h u r · from o: b d p q c e · then i j l t f k v w x y z s g)
-  + hamburgefontsiv</div>
+  <div class="foot">KOPAR working specimen · stage 3 rendered from the same
+  SVG + metrics data that build.py compiles · next: stage 4, figures 0-9
+  (tabular, slashed zero) + punctuation + currency</div>
 </div>
 """
 
@@ -287,8 +286,8 @@ LIVE_TMPL = """<section>
       <div class="panel live-row live edit" contenteditable="true"
            spellcheck="false" style="font-size:64px">%T4%</div>
     </div>
-    <p class="note">Full uppercase + stage-1 lowercase (n o a) + space exist —
-    the last line is editable; other characters fall back to mono.</p>
+    <p class="note">Full A-Z + a-z + space exist — the last line is editable;
+    figures and punctuation arrive in stage 4.</p>
   </section>"""
 
 
@@ -298,22 +297,21 @@ def build_page(gs):
     def pick(names):
         return [by[n] for n in names]
 
-    hero_r = guide_row_svg(pick(["C", "G", "Q", "D", "S"]))
-    hero_s = guide_row_svg(pick(["I", "L", "F", "T"]))
-    hero_d = guide_row_svg(pick(["A", "V", "W", "X", "Y"]))
-    hero_c = guide_row_svg(pick(["B", "P", "R", "M", "N", "K", "U", "J", "Z"]),
-                           track=36)
+    hero_r = guide_row_svg(pick(["n", "m", "h", "u", "r"]))
+    hero_s = guide_row_svg(pick(["o", "b", "d", "p", "q", "c", "e"]), track=36)
+    hero_d = guide_row_svg(pick(["i", "j", "l", "t", "f", "k"]))
+    hero_c = guide_row_svg(pick(["v", "w", "x", "y", "z", "s", "g"]), track=36)
 
-    row1 = string_svg("KOPAR CYBERDECK", gs)
-    row2 = string_svg("ABCDEFGHIJKLMNOPQRSTUVWXYZ", gs)
-    row3 = string_svg("SPHINX OF BLACK QUARTZ JUDGE MY VOW", gs)
-    row4 = string_svg("NEON QUANTA VERTEX HULL WOKE JIGZAG", gs)
+    row1 = string_svg("hamburgefontsiv", gs)
+    row2 = string_svg("abcdefghijklmnopqrstuvwxyz", gs)
+    row3 = string_svg("the quick brown fox jumps over the lazy dog", gs)
+    row4 = string_svg("Sphinx of black quartz judge my vow", gs)
 
-    A, B, K, Q = by["A"], by["B"], by["K"], by["Q"]
-    det1 = detail_svg(A, 150, 380, 450, 760, 215, 660, 385, 736)
-    det2 = detail_svg(B, 240, 180, 540, 540, 398, 325, 470, 405)
-    det3 = detail_svg(K, -20, 180, 280, 540, 94, 326, 176, 406)
-    det4 = detail_svg(Q, 380, -160, 760, 220, 500, -127, 735, 108)
+    b_, s_, m_, g_ = by["b"], by["s"], by["m"], by["g"]
+    det1 = detail_svg(b_, 40, 340, 340, 640, 88, 448, 180, 518)
+    det2 = detail_svg(s_, 220, 360, 480, 600, 320, 474, 412, 566)
+    det3 = detail_svg(m_, 300, 300, 620, 600, 422, 436, 514, 506)
+    det4 = detail_svg(g_, 60, -230, 460, 90, 126, -214, 340, -82)
 
     rows = []
     for g in gs:
@@ -328,10 +326,10 @@ def build_page(gs):
         ff = ('@font-face { font-family: "KOPAR"; '
               f'src: url(data:font/woff2;base64,{b64}) format("woff2"); }}')
         live = (LIVE_TMPL
-                .replace("%T1%", "KOPAR")
-                .replace("%T2%", "SPHINX OF BLACK QUARTZ JUDGE MY VOW")
-                .replace("%T3%", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-                .replace("%T4%", "NEON DECK RUNNER"))
+                .replace("%T1%", "hamburgefontsiv")
+                .replace("%T2%", "Sphinx of black quartz judge my vow")
+                .replace("%T3%", "the quick brown fox jumps over the lazy dog")
+                .replace("%T4%", "Kopar Night Runner"))
     else:
         ff = ""
         live = ""
@@ -356,7 +354,7 @@ def build_page(gs):
 
 
 def main():
-    gs = G.stage2()
+    gs = G.stage3()
     svgdir = write_glyph_svgs(gs)
     mpath = write_metrics(gs)
     spath = build_page(gs)

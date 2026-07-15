@@ -82,8 +82,16 @@ directly and reverses for TrueType quadratics.
     baseline like n — overshoot stays on true rounds only.
   - C/G/S terminals are flat cuts; the 45° chamfer stays reserved for
     E F L T arms (+ t r f s in stage 3).
-- Stage 3 — lowercase (from n: m h u r · from o: b d p q c e · then
-  i j l t f k v w x y z s g) + hamburgefontsiv.
+- **Stage 3 — lowercase complete** (this commit): 22 new glyphs.
+  - Weld notches per spec list: b d p q at the x-height-side weld
+    (corner-step like n), m at both shoulders, u at the floor weld.
+  - 45° terminal cuts on t r f s (s gets both ends).
+  - v w x y carry the flat-cut vertex language scaled to x-height;
+    y's right stroke runs straight through into the descender.
+  - Single-story g with a squared left-opening hook; square 92×92
+    dots on i j; 12u transition bevels where bowl overshoot meets
+    stem flats (b foot, p head, q head, g head).
+- Stage 4 — figures 0-9 (tabular, slashed zero), punctuation, currency.
 - Stage 4 — figures 0-9, punctuation, currency.
 - Stage 5 — spacing (Tracy) + kerning pass.
 - Stage 6 — QA specimen, pangram, mock UI panel at 96/32/16/12 px.

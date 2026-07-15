@@ -425,3 +425,262 @@ def stage2():
             glyph_S(), glyph_T(), glyph_U(), glyph_V(), glyph_W(),
             glyph_X(), glyph_Y(), glyph_Z()]
     return stage1() + caps
+
+
+# ------------------------------------------------------- stage 3: lowercase
+# From n: m h u r · from o: b d p q c e · then i j l t f k v w x y z s g.
+# Notches (spec list): b d p q n m h. Terminal cuts (spec list): t r f s.
+
+DOT_LO, DOT_HI = 610, 702      # square dot band for i j
+
+
+def glyph_m():
+    w, mid = 800, 354           # condensed arches: counters 262 vs n's 306
+    v = [
+        (0, 0), (STEM, 0),
+        (STEM, 482), (STEM + NOTCH_W, 482), (STEM + NOTCH_W, 460),
+        (mid, 460, 60, K_IN), (mid, 0), (mid + STEM, 0),
+        (mid + STEM, 482), (mid + STEM + NOTCH_W, 482),
+        (mid + STEM + NOTCH_W, 460),
+        (w - STEM, 460, 85, K_IN), (w - STEM, 0), (w, 0),
+        (w, XH, 170, K_OUT), (0, XH, 30, K_OUT),
+    ]
+    return Glyph("m", "U+006D", 968, 84, [(v, True, K_OUT)],
+                 "notch at both shoulder welds")
+
+
+def glyph_h():
+    v = [
+        (0, 0), (STEM, 0),
+        (STEM, 482), (STEM + NOTCH_W, 482), (STEM + NOTCH_W, 460),
+        (398, 460, 85, K_IN), (398, 0), (490, 0),
+        (490, XH, 170, K_OUT), (STEM, XH), (STEM, ASC), (0, ASC),
+    ]
+    return Glyph("h", "U+0068", 658, 84, [(v, True, K_OUT)])
+
+
+def glyph_u():
+    v = [
+        (0, XH), (0, 0, 170, K_OUT), (490, 0), (490, XH),
+        (398, XH), (398, 58), (358, 58), (358, 80),
+        (STEM, 80, 85, K_IN), (STEM, XH),
+    ]
+    return Glyph("u", "U+0075", 658, 84, [(v, True, K_OUT)],
+                 "n inverted; notch at the bowl-stem weld, floor side")
+
+
+def glyph_r():
+    v = [
+        (0, 0), (STEM, 0), (STEM, 460), (300, 460),
+        (300, XH - CUT), (300 - CUT, XH), (0, XH),
+    ]
+    return Glyph("r", "U+0072", 430, 84, [(v, True, K_OUT)],
+                 "45-degree cut on the arm terminal")
+
+
+def glyph_b():
+    outer = [
+        (0, 0), (STEM, 0), (104, -OVER),
+        (500, -OVER, 140, K_OUT), (500, XH + OVER, 140, K_OUT),
+        (STEM, XH + OVER), (STEM, ASC), (0, ASC),
+    ]
+    inner = [(STEM, 68), (400, 68, 66, K_IN), (400, 472, 66, K_IN),
+             (STEM + NOTCH_W, 472), (STEM + NOTCH_W, 494), (STEM, 494)]
+    return Glyph("b", "U+0062", 640, 84,
+                 [(outer, True, K_OUT), (inner, False, K_IN)],
+                 "12u foot bevel; notch at the upper weld")
+
+
+def glyph_d():
+    outer = [
+        (0, -OVER, 140, K_OUT), (396, -OVER), (408, 0), (500, 0),
+        (500, ASC), (408, ASC), (408, XH + OVER),
+        (0, XH + OVER, 140, K_OUT),
+    ]
+    inner = [(100, 68, 66, K_IN), (408, 68), (408, 494),
+             (408 - NOTCH_W, 494), (408 - NOTCH_W, 472),
+             (100, 472, 66, K_IN)]
+    return Glyph("d", "U+0064", 640, 56,
+                 [(outer, True, K_OUT), (inner, False, K_IN)])
+
+
+def glyph_p():
+    outer = [
+        (0, DESC), (STEM, DESC), (STEM, -OVER),
+        (500, -OVER, 140, K_OUT), (500, XH + OVER, 140, K_OUT),
+        (104, XH + OVER), (STEM, XH), (0, XH),
+    ]
+    inner = [(STEM, 68), (400, 68, 66, K_IN), (400, 472, 66, K_IN),
+             (STEM + NOTCH_W, 472), (STEM + NOTCH_W, 494), (STEM, 494)]
+    return Glyph("p", "U+0070", 640, 84,
+                 [(outer, True, K_OUT), (inner, False, K_IN)],
+                 "12u head bevel where bowl overshoot meets stem top")
+
+
+def glyph_q():
+    outer = [
+        (0, -OVER, 140, K_OUT), (408, -OVER), (408, DESC), (500, DESC),
+        (500, XH), (420, XH), (408, XH + OVER),
+        (0, XH + OVER, 140, K_OUT),
+    ]
+    inner = [(100, 68, 66, K_IN), (408, 68), (408, 494),
+             (408 - NOTCH_W, 494), (408 - NOTCH_W, 472),
+             (100, 472, 66, K_IN)]
+    return Glyph("q", "U+0071", 640, 56,
+                 [(outer, True, K_OUT), (inner, False, K_IN)])
+
+
+def glyph_c():
+    v = [
+        (496, 386), (496, XH + OVER, 150, K_OUT), (0, XH + OVER, 150, K_OUT),
+        (0, -OVER, 150, K_OUT), (496, -OVER, 150, K_OUT), (496, 162),
+        (396, 162), (396, 68, 66, K_IN), (100, 68, 66, K_IN),
+        (100, 472, 66, K_IN), (396, 472, 66, K_IN), (396, 386),
+    ]
+    return Glyph("c", "U+0063", 596, 56, [(v, True, K_OUT)])
+
+
+def glyph_e():
+    outer = [
+        (0, -OVER, 150, K_OUT), (496, -OVER, 100, K_OUT), (496, 112),
+        (396, 112), (396, 68, 44, K_IN), (100, 68, 66, K_IN),
+        (100, 296), (496, 296), (496, XH + OVER, 150, K_OUT),
+        (0, XH + OVER, 150, K_OUT),
+    ]
+    upper = [(100, 376), (396, 376), (396, 472, 40, K_IN),
+             (100, 472, 40, K_IN)]
+    return Glyph("e", "U+0065", 600, 56,
+                 [(outer, True, K_OUT), (upper, False, K_IN)],
+                 "bar reads through to the right silhouette")
+
+
+def glyph_i():
+    stem = [(0, 0), (STEM, 0), (STEM, XH), (0, XH)]
+    dot = [(0, DOT_LO), (STEM, DOT_LO), (STEM, DOT_HI), (0, DOT_HI)]
+    return Glyph("i", "U+0069", 268, 88,
+                 [(stem, True, K_OUT), (dot, True, K_OUT)],
+                 "square dot, 92x92")
+
+
+def glyph_j():
+    hook = [
+        (0, DESC), (250, DESC, 110, K_OUT), (250, XH), (158, XH),
+        (158, -106, 56, K_IN), (0, -106),
+    ]
+    dot = [(158, DOT_LO), (250, DOT_LO), (250, DOT_HI), (158, DOT_HI)]
+    return Glyph("j", "U+006A", 394, 56,
+                 [(hook, True, K_OUT), (dot, True, K_OUT)])
+
+
+def glyph_l():
+    v = [(0, 0), (STEM, 0), (STEM, ASC), (0, ASC)]
+    return Glyph("l", "U+006C", 268, 88, [(v, True, K_OUT)])
+
+
+def glyph_t():
+    v = [
+        (108, 0), (200, 0), (200, 456), (308, 456), (308, XH),
+        (200, XH), (200, 600), (160, 640), (108, 640),
+        (108, XH), (0, XH), (0, 456), (108, 456),
+    ]
+    return Glyph("t", "U+0074", 392, 40, [(v, True, K_OUT)],
+                 "45-degree cut on the ascender terminal")
+
+
+def glyph_f():
+    v = [
+        (108, 0), (200, 0), (200, 456), (308, 456), (308, XH),
+        (200, XH), (200, 636), (336, 636), (336, 680), (296, ASC),
+        (108, ASC, 70, K_OUT), (108, XH), (0, XH), (0, 456), (108, 456),
+    ]
+    return Glyph("f", "U+0066", 410, 40, [(v, True, K_OUT)],
+                 "45-degree cut on the hook terminal")
+
+
+def glyph_k():
+    v = [
+        (0, 0), (STEM, 0), (STEM, 164), (256, 0), (386, 0),
+        (136, 250), (114, 250), (114, 290), (136, 290),
+        (386, XH), (256, XH), (STEM, 376), (STEM, ASC), (0, ASC),
+    ]
+    return Glyph("k", "U+006B", 500, 84, [(v, True, K_OUT)],
+                 "45-degree limbs + waist slot, scaled from K")
+
+
+def glyph_v():
+    v = [
+        (0, XH), (190, -OVER), (290, -OVER), (480, XH),
+        (376, XH), (258, 190), (222, 190), (104, XH),
+    ]
+    return Glyph("v", "U+0076", 512, 16, [(v, True, K_OUT)])
+
+
+def glyph_w():
+    v = [
+        (0, XH), (128, -OVER), (196, -OVER), (310, 390), (350, 390),
+        (464, -OVER), (532, -OVER), (660, XH), (572, XH),
+        (494, 205), (454, 205), (356, XH + OVER), (304, XH + OVER),
+        (206, 205), (166, 205), (88, XH),
+    ]
+    return Glyph("w", "U+0077", 688, 14, [(v, True, K_OUT)])
+
+
+def glyph_x():
+    v = [
+        (0, 0), (96, 0), (235, 201), (374, 0), (470, 0),
+        (283, 270), (470, XH), (374, XH), (235, 339),
+        (96, XH), (0, XH), (187, 270),
+    ]
+    return Glyph("x", "U+0078", 506, 18, [(v, True, K_OUT)])
+
+
+def glyph_y():
+    v = [
+        (0, XH), (189, -10), (127, DESC), (231, DESC),
+        (480, XH), (376, XH), (257, 192), (221, 192), (104, XH),
+    ]
+    return Glyph("y", "U+0079", 512, 16, [(v, True, K_OUT)],
+                 "right stroke runs straight through to the descender")
+
+
+def glyph_z():
+    v = [
+        (0, 0), (420, 0), (420, 84), (138, 84), (404, 456),
+        (404, XH), (8, XH), (8, 456), (272, 456), (6, 84), (0, 84),
+    ]
+    return Glyph("z", "U+007A", 524, 52, [(v, True, K_OUT)])
+
+
+def glyph_s():
+    v = [
+        (40, 0), (280, 0), (400, 0, 100, K_OUT), (400, 316, 64, K_OUT),
+        (102, 316, 30, K_OUT), (102, 460, 30, K_OUT), (386, 460),
+        (386, 500), (346, XH), (12, XH, 100, K_OUT),
+        (12, 236, 70, K_OUT), (310, 236, 30, K_OUT),
+        (310, 80, 30, K_OUT), (0, 80), (0, 40),
+    ]
+    return Glyph("s", "U+0073", 508, 54, [(v, True, K_OUT)],
+                 "45-degree cuts on both terminals")
+
+
+def glyph_g():
+    outer = [
+        (0, -OVER, 140, K_OUT), (408, -OVER), (408, -106),
+        (150, -106), (150, DESC), (500, DESC, 110, K_OUT),
+        (500, XH), (420, XH), (408, XH + OVER),
+        (0, XH + OVER, 140, K_OUT),
+    ]
+    inner = [(100, 68, 66, K_IN), (408, 68), (408, 472),
+             (100, 472, 66, K_IN)]
+    return Glyph("g", "U+0067", 618, 56,
+                 [(outer, True, K_OUT), (inner, False, K_IN)],
+                 "single-story; squared hook opening left")
+
+
+def stage3():
+    lc = [glyph_b(), glyph_c(), glyph_d(), glyph_e(), glyph_f(),
+          glyph_g(), glyph_h(), glyph_i(), glyph_j(), glyph_k(),
+          glyph_l(), glyph_m(), glyph_p(), glyph_q(), glyph_r(),
+          glyph_s(), glyph_t(), glyph_u(), glyph_v(), glyph_w(),
+          glyph_x(), glyph_y(), glyph_z()]
+    return stage2() + lc
