@@ -1,0 +1,61 @@
+{
+  "upm": 1000,
+  "capHeight": 700,
+  "xHeight": 540,
+  "ascender": 720,
+  "descender": -190,
+  "baselineY": 800,
+  "overshoot": 12,
+  "glyphs": [
+    {
+      "unicode": "U+0020",
+      "name": "space",
+      "advanceWidth": 260,
+      "lsb": 0,
+      "rsb": 0
+    },
+    {
+      "unicode": "U+0045",
+      "name": "E",
+      "advanceWidth": 630,
+      "lsb": 88,
+      "rsb": 64
+    },
+    {
+      "unicode": "U+0048",
+      "name": "H",
+      "advanceWidth": 760,
+      "lsb": 88,
+      "rsb": 88
+    },
+    {
+      "unicode": "U+004F",
+      "name": "O",
+      "advanceWidth": 740,
+      "lsb": 60,
+      "rsb": 60
+    },
+    {
+      "unicode": "U+0061",
+      "name": "a",
+      "advanceWidth": 642,
+      "lsb": 68,
+      "rsb": 84
+    },
+    {
+      "unicode": "U+006E",
+      "name": "n",
+      "advanceWidth": 658,
+      "lsb": 84,
+      "rsb": 84
+    },
+    {
+      "unicode": "U+006F",
+      "name": "o",
+      "advanceWidth": 608,
+      "lsb": 56,
+      "rsb": 56
+    }
+  ],
+  "kerning": {}
+}
