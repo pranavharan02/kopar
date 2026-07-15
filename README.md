@@ -68,8 +68,20 @@ directly and reverses for TrueType quadratics.
     45° transition bevel at the weld.
   - Sidebearings are provisional scaffolding until stage 5 (Tracy method).
   - Space advance 260, provisional.
-- Stage 2 — uppercase by group: rounds C G Q D S · squares I L F T ·
-  diagonals A V W X Y · combos B P R M N K U J Z.
+- **Stage 2 — uppercase complete** (this commit): 23 new capitals derived
+  by group (rounds C G Q D S / squares I L F T / diagonals A V W X Y /
+  combos B P R M N K U J Z). Decisions taken:
+  - Flat-cut apexes/vertexes with 12u overshoot land on A V W M N; counters
+    of A/V get small flat cuts too (no sharp points anywhere).
+  - Waist notches: B takes a 40×22 bite in its right face between the
+    bowls; R takes it in the bowl underside at the leg; K's crotch is a
+    22u-deep rectangular slot between exactly-45° limbs.
+  - Q's tail is the whole bottom-right corner sheared out 95u along 45°,
+    end face parallel to the shear (negative rsb intended).
+  - Flat-top/flat-bottom rounds (D top/bottom, U bottom) align to cap and
+    baseline like n — overshoot stays on true rounds only.
+  - C/G/S terminals are flat cuts; the 45° chamfer stays reserved for
+    E F L T arms (+ t r f s in stage 3).
 - Stage 3 — lowercase (from n: m h u r · from o: b d p q c e · then
   i j l t f k v w x y z s g) + hamburgefontsiv.
 - Stage 4 — figures 0-9, punctuation, currency.
